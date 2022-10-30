@@ -26,22 +26,23 @@ namespace MasterMind.GameModes
                     Console.Write($"{answer.color +1} ");
                 Console.WriteLine();
                 int i = 0;
-                foreach (var p in showBoard)
-                {
-                    posAndColour.GetColour(p);
-                    i++;
-                    if (i == 4)
-                    {
-                        Console.Write($"\n");
-                        i = 0;
-                    }
-                }
                 if (guesses.Count() == 4)
                 {
                     var wGuess = posAndColour.GuessComparer(guesses);
                     Console.ForegroundColor = System.ConsoleColor.White;
-                    Console.Write($"{wGuess}\n");
+                    showBoard.Add(wGuess);
+                    //Console.Write($"{wGuess} ");
 
+                }
+                foreach (var p in showBoard)
+                {
+                    posAndColour.GetColour(p);
+                    i++;
+                    if (i == 5)
+                    {
+                        Console.Write($"\n");
+                        i = 0;
+                    }
                 }
                 if (guesses.Count() == 4)
                 {

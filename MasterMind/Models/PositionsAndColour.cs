@@ -45,12 +45,19 @@ namespace MasterMind.Models
         public int GuessComparer(List<int> guesses)
         {
 
-            if (guesses.Any(a => positions.Any(b => b.color.Equals(a -1))))
-            {
-                var count = guesses.Count(a => positions.Any(b => b.color.Equals(a -1)));
-                return count;
-            }
-            return -1;
+            //if (guesses.Any(a => positions.Any(b => b.color.Equals(a -1))))
+            //{
+            var count = guesses.Count(a => positions.Any(b => b.color.Equals(a -1)));
+            // 0 1 2 3 4
+            if (count == 1)
+                return -1;
+            if (count == 2)
+                return -2;
+            if (count == 3)
+                return -3;
+            if (count == 4)
+                return -4;
+            return -5;
 
         }
         public void GetColour(int input)
@@ -86,9 +93,30 @@ namespace MasterMind.Models
                 Console.ForegroundColor = System.ConsoleColor.Yellow;
                 Console.Write($"[6] ");
             }
+            else if (input == -1)
+            {
+                Console.ForegroundColor = System.ConsoleColor.White;
+                Console.Write($" 1 ");
+            }
+            else if (input == -2)
+            {
+                Console.ForegroundColor = System.ConsoleColor.White;
+                Console.Write($" 2 ");
+            }
+            else if (input == -3)
+            {
+                Console.ForegroundColor = System.ConsoleColor.White;
+                Console.Write($" 3 ");
+            }
+            else if (input == -4)
+            {
+                Console.ForegroundColor = System.ConsoleColor.White;
+                Console.Write($" 4 ");
+            }
             else
             {
                 Console.ForegroundColor = System.ConsoleColor.White;
+                Console.Write($" 0 ");
             }
         }
         public int AddColour(int input)
