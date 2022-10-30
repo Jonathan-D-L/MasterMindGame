@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace MasterMind.Models
 {
-    public class Position
+    public class Pulp
     {
        
         private int _position;
         private string _color;
 
 
-        public Position(int position, string color)
+        public Pulp(int position, string color)
         {
             _position = position;
             _color = color;

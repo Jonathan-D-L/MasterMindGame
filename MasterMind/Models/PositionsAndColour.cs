@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace MasterMind.Models
 {
-    public class Positions
+    public class PositionsAndColour
     {
-        private List<Position> positions = new();
+        private List<Pulp> positions = new();
 
-        public List<Position> GetPosAndColour()
+        public List<Pulp> GetPosAndColour()
         {
-            var posAndColour = new List<Position>();
-            string[] colors = { "RED", "GREEN", "BLUE", "ORANGE", "YELLOW", "PURPLE" };
+            var posAndColour = new List<Pulp>();
+            string[] colors = { "RED", "GREEN", "BLUE", "CYAN", "YELLOW", "PURPLE" };
             var usedColors = new List<string>();
             int pos = 0;
             var rand = new Random();
@@ -25,7 +25,7 @@ namespace MasterMind.Models
 
                 if (!usedColors.Contains(colors[index]))
                 {
-                    var newPosAndColour = new Position(pos, colors[index]);
+                    var newPosAndColour = new Pulp(pos, colors[index]);
                     positions.Add(newPosAndColour);
                     usedColors.Add(colors[index]);
                     pos++;
