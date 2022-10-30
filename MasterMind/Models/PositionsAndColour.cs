@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace MasterMind.Models
     public class PositionsAndColour
     {
         private List<Pulp> positions = new();
+        private List<Pulp> guesses = new();
         public List<Pulp> SetPosAndColour()
         {
             var posAndColour = new List<Pulp>();
@@ -40,40 +42,54 @@ namespace MasterMind.Models
             }
             return positions;
         }
+        public int GuessComparer(List<int> guesses)
+        {
+
+            if (guesses.Any(a => positions.Any(b => b.color.Equals(a -1))))
+            {
+                var count = guesses.Count(a => positions.Any(b => b.color.Equals(a -1)));
+                return count;
+            }
+            return -1;
+
+        }
         public void GetColour(int input)
         {
-            
+
             if (input == 1)
             {
                 Console.ForegroundColor = System.ConsoleColor.Red;
                 Console.Write($"[1] ");
             }
-            if (input == 2)
+            else if (input == 2)
             {
                 Console.ForegroundColor = System.ConsoleColor.Green;
                 Console.Write($"[2] ");
             }
-            if (input == 3)
+            else if (input == 3)
             {
                 Console.ForegroundColor = System.ConsoleColor.Blue;
                 Console.Write($"[3] ");
             }
-            if (input == 4)
+            else if (input == 4)
             {
                 Console.ForegroundColor = System.ConsoleColor.Magenta;
                 Console.Write($"[4] ");
             }
-            if (input == 5)
+            else if (input == 5)
             {
                 Console.ForegroundColor = System.ConsoleColor.Cyan;
                 Console.Write($"[5] ");
             }
-            if (input == 6)
+            else if (input == 6)
             {
                 Console.ForegroundColor = System.ConsoleColor.Yellow;
                 Console.Write($"[6] ");
             }
-            Console.ForegroundColor = System.ConsoleColor.White;
+            else
+            {
+                Console.ForegroundColor = System.ConsoleColor.White;
+            }
         }
         public int AddColour(int input)
         {
@@ -81,27 +97,30 @@ namespace MasterMind.Models
             {
                 return 1;
             }
-            if (input == 2)
+            else if (input == 2)
             {
                 return 2;
             }
-            if (input == 3)
+            else if (input == 3)
             {
                 return 3;
             }
-            if (input == 4)
+            else if (input == 4)
             {
                 return 4;
             }
-            if (input == 5)
+            else if (input == 5)
             {
                 return 5;
             }
-            if (input == 6)
+            else if (input == 6)
             {
                 return 6;
             }
-            return 0;
+            else
+            {
+                return 0;
+            }
         }
     }
 }

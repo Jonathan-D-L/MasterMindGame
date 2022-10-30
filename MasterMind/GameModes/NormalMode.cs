@@ -1,6 +1,7 @@
 ﻿using MasterMind.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,12 +15,16 @@ namespace MasterMind.GameModes
 
             var posAndColour = new PositionsAndColour();
             var header = new Header();
-            var showBoard = new List<int> { 1, 2, 3 };
+            var showBoard = new List<int>();
+            var guesses = new List<int>();
             var posC = posAndColour.SetPosAndColour();
             while (true)
             {
                 Console.Clear();
                 header.ShowHeader();
+                foreach (var answer in posC)
+                    Console.Write($"{answer.color +1} ");
+                Console.WriteLine();
                 int i = 0;
                 foreach (var p in showBoard)
                 {
@@ -27,9 +32,20 @@ namespace MasterMind.GameModes
                     i++;
                     if (i == 4)
                     {
-                        Console.WriteLine("\n");
+                        Console.Write($"\n");
                         i = 0;
                     }
+                }
+                if (guesses.Count() == 4)
+                {
+                    var wGuess = posAndColour.GuessComparer(guesses);
+                    Console.ForegroundColor = System.ConsoleColor.White;
+                    Console.Write($"{wGuess}\n");
+
+                }
+                if (guesses.Count() == 4)
+                {
+                    guesses.Clear();
                 }
                 while (true)
                 {
@@ -38,12 +54,9 @@ namespace MasterMind.GameModes
                     {
                         int.TryParse(input.ToString(), out int inputInt);
                         posAndColour.GetColour(inputInt);
+                        guesses.Add(inputInt);
                         showBoard.Add(inputInt);
                         posAndColour.GetColour(input);
-                        break;
-                    }
-                    else
-                    {
                         break;
                     }
                 }
