@@ -14,23 +14,25 @@ namespace MasterMind.Models
         public List<Position> GetPosAndColour()
         {
             var posAndColour = new List<Position>();
-            string[] colours = { "RED", "GREEN", "BLUE", "ORANGE", "YELLOW", "PURPLE" };
+            string[] colors = { "RED", "GREEN", "BLUE", "ORANGE", "YELLOW", "PURPLE" };
+            var usedColors = new List<string>();
             int pos = 0;
+            var rand = new Random();
+            int index = rand.Next(colors.Length);
             while (true)
             {
 
-                var rand = new Random();
-                int index = rand.Next(colours.Length);
 
-                if (posAndColour.Any(n => n.color.Contains(colours[index])))
+                if (!usedColors.Contains(colors[index]))
                 {
-                    index = rand.Next(colours.Length);
+                    var newPosAndColour = new Position(pos, colors[index]);
+                    positions.Add(newPosAndColour);
+                    usedColors.Add(colors[index]);
+                    pos++;
                 }
                 else
                 {
-                    var newPosAndColour = new Position(pos, colours[index]);
-                    positions.Add(newPosAndColour);
-                    pos++;
+                    index = rand.Next(colors.Length);
                 }
                 if (positions.Count >= 4)
                 {

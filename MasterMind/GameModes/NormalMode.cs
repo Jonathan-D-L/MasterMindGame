@@ -11,14 +11,17 @@ namespace MasterMind.GameModes
     {
         public void PLayNormalMode()
         {
-            
-            var posAndColour = new Positions();
-            var posC = posAndColour.GetPosAndColour();
-            foreach (var a in posC)
+            while (true)
             {
-                Console.Write($"[{a.position}-{a.color}]  ");
+                var posAndColour = new Positions();
+                var posC = posAndColour.GetPosAndColour();
+                foreach (var a in posC)
+                {
+                    Console.Write($"[{a.position}-{a.color}]  ");
+                }
+                Console.WriteLine("");
+                Console.ReadKey();
             }
-            
         }
     }
 }
