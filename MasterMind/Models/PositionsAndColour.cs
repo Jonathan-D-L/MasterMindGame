@@ -11,11 +11,11 @@ namespace MasterMind.Models
     {
         private List<Pulp> positions = new();
 
-        public List<Pulp> GetPosAndColour()
+        public List<Pulp> SetPosAndColour()
         {
             var posAndColour = new List<Pulp>();
-            string[] colors = { "RED", "GREEN", "BLUE", "CYAN", "YELLOW", "PURPLE" };
-            var usedColors = new List<string>();
+            int[] colors = { 0, 1, 2, 3, 4, 5 };
+            var usedColors = new List<int>();
             int pos = 0;
             var rand = new Random();
             int index = rand.Next(colors.Length);
@@ -40,6 +40,41 @@ namespace MasterMind.Models
                 }
             }
             return positions;
+        }
+        public void GetColour(char input)
+        {
+            
+            if (input == '1')
+            {
+                Console.ForegroundColor = System.ConsoleColor.Red;
+                Console.Write($"[O] ");
+            }
+            if (input == '2')
+            {
+                Console.ForegroundColor = System.ConsoleColor.Green;
+                Console.Write($"[O] ");
+            }
+            if (input == '3')
+            {
+                Console.ForegroundColor = System.ConsoleColor.Blue;
+                Console.Write($"[O] ");
+            }
+            if (input == '4')
+            {
+                Console.ForegroundColor = System.ConsoleColor.Magenta;
+                Console.Write($"[O] ");
+            }
+            if (input == '5')
+            {
+                Console.ForegroundColor = System.ConsoleColor.Cyan;
+                Console.Write($"[O] ");
+            }
+            if (input == '6')
+            {
+                Console.ForegroundColor = System.ConsoleColor.Yellow;
+                Console.Write($"[O] ");
+            }
+            Console.ForegroundColor = System.ConsoleColor.White;
         }
     }
 }

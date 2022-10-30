@@ -11,53 +11,15 @@ namespace MasterMind.GameModes
     {
         public void PLayNormalMode()
         {
-            //var Red = Console.ForegroundColor = ConsoleColor.Red;
-            //var Green = Console.ForegroundColor = ConsoleColor.Green;
-            //var Blue = Console.ForegroundColor = ConsoleColor.Blue;
-            //var purple = Console.ForegroundColor = ConsoleColor.Magenta;
-            //var cyan = Console.ForegroundColor = ConsoleColor.Cyan;
-            //var yellow = Console.ForegroundColor = ConsoleColor.Yellow;
 
             var posAndColour = new PositionsAndColour();
-            var posC = posAndColour.GetPosAndColour();
+            var header = new Header();  
+            var posC = posAndColour.SetPosAndColour();
             while (true)
             {
-                foreach (var a in posC)
-                {
-                    if (a.color == "RED")
-                    {
-                        Console.ForegroundColor = System.ConsoleColor.Red;
-                        Console.Write($"[O] ");
-                    }
-                    if (a.color == "GREEN")
-                    {
-                        Console.ForegroundColor = System.ConsoleColor.Green;
-                        Console.Write($"[O] ");
-                    }
-                    if (a.color == "BLUE")
-                    {
-                        Console.ForegroundColor = System.ConsoleColor.Blue;
-                        Console.Write($"[O] ");
-                    }
-                    if (a.color == "PURPLE")
-                    {
-                        Console.ForegroundColor = System.ConsoleColor.Magenta;
-                        Console.Write($"[O] ");
-                    }
-                    if (a.color == "CYAN")
-                    {
-                        Console.ForegroundColor = System.ConsoleColor.Cyan;
-                        Console.Write($"[O] ");
-                    }
-                    if (a.color == "YELLOW")
-                    {
-                        Console.ForegroundColor = System.ConsoleColor.Yellow;
-                        Console.Write($"[O] ");
-                    }
-                }
-                Console.ReadKey();
-                Console.Clear();
-
+                header.ShowHeader();
+                var input = Console.ReadKey().KeyChar;
+                posAndColour.GetColour(input);
             }
         }
     }

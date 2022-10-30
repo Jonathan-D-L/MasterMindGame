@@ -10,17 +10,17 @@ namespace MasterMind.Models
     {
        
         private int _position;
-        private string _color;
+        private int _colorId;
 
 
-        public Pulp(int position, string color)
+        public Pulp(int position, int colorId)
         {
             _position = position;
-            _color = color;
+            _colorId = colorId;
 
         }
         public int position { get { return _position; } }
-        public string color { get { return _color; } }
+        public int color { get { return _colorId; } }
 
     }
 }
