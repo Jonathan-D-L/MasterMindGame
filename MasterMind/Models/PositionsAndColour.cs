@@ -10,7 +10,6 @@ namespace MasterMind.Models
     public class PositionsAndColour
     {
         private List<Pulp> positions = new();
-
         public List<Pulp> SetPosAndColour()
         {
             var posAndColour = new List<Pulp>();
@@ -41,40 +40,68 @@ namespace MasterMind.Models
             }
             return positions;
         }
-        public void GetColour(char input)
+        public void GetColour(int input)
         {
             
-            if (input == '1')
+            if (input == 1)
             {
                 Console.ForegroundColor = System.ConsoleColor.Red;
-                Console.Write($"[O] ");
+                Console.Write($"[1] ");
             }
-            if (input == '2')
+            if (input == 2)
             {
                 Console.ForegroundColor = System.ConsoleColor.Green;
-                Console.Write($"[O] ");
+                Console.Write($"[2] ");
             }
-            if (input == '3')
+            if (input == 3)
             {
                 Console.ForegroundColor = System.ConsoleColor.Blue;
-                Console.Write($"[O] ");
+                Console.Write($"[3] ");
             }
-            if (input == '4')
+            if (input == 4)
             {
                 Console.ForegroundColor = System.ConsoleColor.Magenta;
-                Console.Write($"[O] ");
+                Console.Write($"[4] ");
             }
-            if (input == '5')
+            if (input == 5)
             {
                 Console.ForegroundColor = System.ConsoleColor.Cyan;
-                Console.Write($"[O] ");
+                Console.Write($"[5] ");
             }
-            if (input == '6')
+            if (input == 6)
             {
                 Console.ForegroundColor = System.ConsoleColor.Yellow;
-                Console.Write($"[O] ");
+                Console.Write($"[6] ");
             }
             Console.ForegroundColor = System.ConsoleColor.White;
+        }
+        public int AddColour(int input)
+        {
+            if (input == 1)
+            {
+                return 1;
+            }
+            if (input == 2)
+            {
+                return 2;
+            }
+            if (input == 3)
+            {
+                return 3;
+            }
+            if (input == 4)
+            {
+                return 4;
+            }
+            if (input == 5)
+            {
+                return 5;
+            }
+            if (input == 6)
+            {
+                return 6;
+            }
+            return 0;
         }
     }
 }
