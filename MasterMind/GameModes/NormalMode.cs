@@ -92,6 +92,7 @@ namespace MasterMind.GameModes
                             break;
                         }
                     }
+                    break;
                 }
             }
         }
