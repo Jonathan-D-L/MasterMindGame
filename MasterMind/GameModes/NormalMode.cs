@@ -14,6 +14,7 @@ namespace MasterMind.GameModes
         {
 
             var posAndColour = new PositionsAndColour();
+            var playAgain = new playAgain();
             var header = new Header();
             var showBoard = new List<int>();
             var guesses = new List<int>();
@@ -23,6 +24,12 @@ namespace MasterMind.GameModes
                 pos.Add(p.color +1);
             while (true)
             {
+                if (showBoard.Count >= 60)
+                {
+                    bool win = false;
+                    playAgain.ShowPLayAgain(win);
+                    break;
+                }
                 Console.Clear();
                 Console.ForegroundColor = System.ConsoleColor.White;
                 header.ShowHeader();
