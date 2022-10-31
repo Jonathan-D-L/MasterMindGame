@@ -20,6 +20,7 @@ namespace MasterMind.GameModes
             var guesses = new List<int>();
             var pos = new List<int>();
             var guessCorrect = 0;
+            bool quitNow = false;
             var posC = posAndColour.SetPosAndColour();
             foreach (var p in posC)
             {
@@ -70,6 +71,7 @@ namespace MasterMind.GameModes
                 {
                     guesses.Clear();
                 }
+                
                 while (true)
                 {
                     var input = Console.ReadKey().KeyChar;
@@ -92,9 +94,35 @@ namespace MasterMind.GameModes
                             break;
                         }
                     }
+                    if (input == 'q')
+                    {
+                        while (true)
+                        {
+
+                            Console.Clear();
+                            Console.ForegroundColor = System.ConsoleColor.White;
+                            header.ShowHeader();
+                            Console.WriteLine("-[QUIT] Are you sure?--\n---------[Y/N]---------");
+                            var choise = Console.ReadKey().KeyChar;
+                            if (choise == 'y')
+                            {
+                                quitNow = true;
+                                break;
+                            }
+                            if (choise == 'n')
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    break;
+                }
+                if (quitNow == true)
+                {
                     break;
                 }
             }
         }
     }
 }
+
