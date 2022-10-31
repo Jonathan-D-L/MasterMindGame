@@ -11,7 +11,7 @@ namespace MasterMind.GameModes
         public void ShowHeader()
         {
             
-            Console.WriteLine("------MASTERTMIND------");
+            
 
             Console.ForegroundColor = System.ConsoleColor.Red;
             Console.Write($"[1] ");
@@ -29,8 +29,9 @@ namespace MasterMind.GameModes
             Console.Write($"[5] ");
 
             Console.ForegroundColor = System.ConsoleColor.Yellow;
-            Console.Write($"[6] \n\n");
+            Console.Write($"[6] \n");
             Console.ForegroundColor = System.ConsoleColor.White;
+            Console.WriteLine("------MASTERTMIND------");
         }
     }
 }

@@ -12,28 +12,39 @@ namespace MasterMind
     {
         public void ShowPLayAgain(bool win, List<Pulp> posC)
         {
-            Console.ForegroundColor = System.ConsoleColor.White;
+            var posAndColour = new PositionsAndColour();
             var normalmode = new NormalMode();
+            var header = new Header();
             while (true)
             {
                 if (win == true)
                 {
                     Console.Clear();
-                    Console.Write("rätt svar: ");
+                    Console.ForegroundColor = System.ConsoleColor.White;
+                    header.ShowHeader();
+                    Console.Write("Answer: ");
                     foreach (var answer in posC)
-                        Console.Write($"{answer.color +1} ");
-                    Console.WriteLine("Grattis du vann spela igen? J/N");
+                    {
+                        posAndColour.GetColour(answer.color +1);
+                    }
+                    Console.ForegroundColor = System.ConsoleColor.White;
+                    Console.WriteLine("\n-You won, play again?--\n---------[Y/N]---------");
                 }
                 if (win == false)
                 {
                     Console.Clear();
-                    Console.Write("rätt svar: ");
+                    Console.ForegroundColor = System.ConsoleColor.White;
+                    header.ShowHeader();
+                    Console.Write("Answer: ");
                     foreach (var answer in posC)
-                        Console.Write($"{answer.color +1} ");
-                    Console.WriteLine("Du förlora spela igen? J/N");
+                    {
+                        posAndColour.GetColour(answer.color +1);
+                    }
+                    Console.ForegroundColor = System.ConsoleColor.White;
+                    Console.WriteLine("\n-You lost, play again?-\n---------[Y/N]---------");
                 }
                 var choise = Console.ReadKey().KeyChar;
-                if (choise == 'j')
+                if (choise == 'y')
                 {
                     normalmode.PLayNormalMode();
                     break;

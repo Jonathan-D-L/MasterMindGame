@@ -172,36 +172,5 @@ namespace MasterMind.Models
                 Console.Write($" 0 ");
             }
         }
-        public int AddColour(int input)
-        {
-            if (input == 1)
-            {
-                return 1;
-            }
-            else if (input == 2)
-            {
-                return 2;
-            }
-            else if (input == 3)
-            {
-                return 3;
-            }
-            else if (input == 4)
-            {
-                return 4;
-            }
-            else if (input == 5)
-            {
-                return 5;
-            }
-            else if (input == 6)
-            {
-                return 6;
-            }
-            else
-            {
-                return 0;
-            }
-        }
     }
 }

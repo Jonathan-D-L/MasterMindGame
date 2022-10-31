@@ -18,30 +18,29 @@ namespace MasterMind.GameModes
             var header = new Header();
             var showBoard = new List<int>();
             var guesses = new List<int>();
-            var posC = posAndColour.SetPosAndColour();
             var pos = new List<int>();
             var guessCorrect = 0;
+            var posC = posAndColour.SetPosAndColour();
             foreach (var p in posC)
+            {
                 pos.Add(p.color +1);
+            }
             while (true)
             {
                 if (showBoard.Count >= 60)
                 {
                     bool win = false;
                     playAgain.ShowPLayAgain(win, posC);
-                    Console.WriteLine("rätt svar");
-                    foreach (var answer in posC)
-                        Console.Write($"{answer.color +1} ");
-                    Console.ReadKey();
                     break;
                 }
-                
                 Console.Clear();
                 Console.ForegroundColor = System.ConsoleColor.White;
                 header.ShowHeader();
-                //foreach (var answer in posC)
-                //    Console.Write($"{answer.color +1} ");
-                //Console.WriteLine();
+                //
+                foreach (var answer in posC)
+                    Console.Write($"{answer.color +1} ");
+                Console.WriteLine();
+                //
                 int i = 0;
                 if (guesses.Count() == 4)
                 {
@@ -82,6 +81,16 @@ namespace MasterMind.GameModes
                         showBoard.Add(inputInt);
                         posAndColour.GetColour(input);
                         break;
+                    }
+                    if (input == (char)8)
+                    {
+                        if (guesses.Count != 0)
+                        {
+                            Console.Write("\a \b");
+                            guesses.RemoveAt(guesses.Count -1);
+                            showBoard.RemoveAt(showBoard.Count -1);
+                            break;
+                        }
                     }
                 }
             }
