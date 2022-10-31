@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,6 @@ namespace MasterMind.Models
     public class PositionsAndColour
     {
         private List<Pulp> positions = new();
-        private List<Pulp> guesses = new();
         public List<Pulp> SetPosAndColour()
         {
             var posAndColour = new List<Pulp>();
@@ -42,13 +42,20 @@ namespace MasterMind.Models
             }
             return positions;
         }
-        public int GuessComparer(List<int> guesses)
+        public int GuessComparer1(List<int> guesses, List<int> pos)
         {
 
-            //if (guesses.Any(a => positions.Any(b => b.color.Equals(a -1))))
-            //{
-            var count = guesses.Count(a => positions.Any(b => b.color.Equals(a -1)));
-            // 0 1 2 3 4
+
+            var count = guesses.Select(a => a -1).ToList().Intersect(positions.Select(b => b.color).ToList()).ToList().Count();
+            if (guesses[0] == pos[0])
+                count--;
+            if (guesses[1] == pos[1])
+                count--;
+            if (guesses[2] == pos[2])
+                count--;
+            if (guesses[3] == pos[3])
+                count--;
+
             if (count == 1)
                 return -1;
             if (count == 2)
@@ -57,8 +64,29 @@ namespace MasterMind.Models
                 return -3;
             if (count == 4)
                 return -4;
-            return -5;
+            return 0;
+        }
+        public int GuessComparer2(List<int> guesses, List<int> pos)
+        {
+            var count = 0;
+            if (guesses[0] == pos[0])
+                count++;
+            if (guesses[1] == pos[1])
+                count++;
+            if (guesses[2] == pos[2])
+                count++;
+            if (guesses[3] == pos[3])
+                count++;
 
+            if (count == 1)
+                return -5;
+            if (count == 2)
+                return -6;
+            if (count == 3)
+                return -7;
+            if (count == 4)
+                return -8;
+            return -9;
         }
         public void GetColour(int input)
         {
@@ -113,7 +141,32 @@ namespace MasterMind.Models
                 Console.ForegroundColor = System.ConsoleColor.White;
                 Console.Write($" 4 ");
             }
-            else
+            else if (input == -5)
+            {
+                Console.ForegroundColor = System.ConsoleColor.Red;
+                Console.Write($" 1 ");
+            }
+            else if (input == -6)
+            {
+                Console.ForegroundColor = System.ConsoleColor.Red;
+                Console.Write($" 2 ");
+            }
+            else if (input == -7)
+            {
+                Console.ForegroundColor = System.ConsoleColor.Red;
+                Console.Write($" 3 ");
+            }
+            else if (input == -8)
+            {
+                Console.ForegroundColor = System.ConsoleColor.Red;
+                Console.Write($" 4 ");
+            }
+            else if (input == -9)
+            {
+                Console.ForegroundColor = System.ConsoleColor.Red;
+                Console.Write($" 0 ");
+            }
+            else if (input == 0)
             {
                 Console.ForegroundColor = System.ConsoleColor.White;
                 Console.Write($" 0 ");

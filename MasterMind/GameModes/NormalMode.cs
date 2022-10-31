@@ -18,9 +18,13 @@ namespace MasterMind.GameModes
             var showBoard = new List<int>();
             var guesses = new List<int>();
             var posC = posAndColour.SetPosAndColour();
+            var pos = new List<int>();
+            foreach (var p in posC)
+                pos.Add(p.color +1);
             while (true)
             {
                 Console.Clear();
+                Console.ForegroundColor = System.ConsoleColor.White;
                 header.ShowHeader();
                 foreach (var answer in posC)
                     Console.Write($"{answer.color +1} ");
@@ -28,17 +32,16 @@ namespace MasterMind.GameModes
                 int i = 0;
                 if (guesses.Count() == 4)
                 {
-                    var wGuess = posAndColour.GuessComparer(guesses);
-                    Console.ForegroundColor = System.ConsoleColor.White;
-                    showBoard.Add(wGuess);
-                    //Console.Write($"{wGuess} ");
-
+                    var Guess1 = posAndColour.GuessComparer1(guesses, pos);
+                    showBoard.Add(Guess1);
+                    var Guess2 = posAndColour.GuessComparer2(guesses, pos);
+                    showBoard.Add(Guess2);
                 }
                 foreach (var p in showBoard)
                 {
                     posAndColour.GetColour(p);
                     i++;
-                    if (i == 5)
+                    if (i == 6)
                     {
                         Console.Write($"\n");
                         i = 0;
