@@ -20,6 +20,7 @@ namespace MasterMind.GameModes
             var guesses = new List<int>();
             var posC = posAndColour.SetPosAndColour();
             var pos = new List<int>();
+            var guessCorrect = 0;
             foreach (var p in posC)
                 pos.Add(p.color +1);
             while (true)
@@ -27,22 +28,34 @@ namespace MasterMind.GameModes
                 if (showBoard.Count >= 60)
                 {
                     bool win = false;
-                    playAgain.ShowPLayAgain(win);
+                    playAgain.ShowPLayAgain(win, posC);
+                    Console.WriteLine("rätt svar");
+                    foreach (var answer in posC)
+                        Console.Write($"{answer.color +1} ");
+                    Console.ReadKey();
                     break;
                 }
+                
                 Console.Clear();
                 Console.ForegroundColor = System.ConsoleColor.White;
                 header.ShowHeader();
-                foreach (var answer in posC)
-                    Console.Write($"{answer.color +1} ");
-                Console.WriteLine();
+                //foreach (var answer in posC)
+                //    Console.Write($"{answer.color +1} ");
+                //Console.WriteLine();
                 int i = 0;
                 if (guesses.Count() == 4)
                 {
-                    var Guess1 = posAndColour.GuessComparer1(guesses, pos);
-                    showBoard.Add(Guess1);
-                    var Guess2 = posAndColour.GuessComparer2(guesses, pos);
-                    showBoard.Add(Guess2);
+                    var guess1 = posAndColour.GuessComparer1(guesses, pos);
+                    showBoard.Add(guess1);
+                    var guess2 = posAndColour.GuessComparer2(guesses, pos);
+                    guessCorrect = guess2;
+                    showBoard.Add(guess2);
+                    if (guessCorrect == -8)
+                    {
+                        bool win = true;
+                        playAgain.ShowPLayAgain(win, posC);
+                        break;
+                    }
                 }
                 foreach (var p in showBoard)
                 {
