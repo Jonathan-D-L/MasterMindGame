@@ -38,9 +38,9 @@ namespace MasterMind.GameModes
                 Console.ForegroundColor = System.ConsoleColor.White;
                 header.ShowHeader();
                 //
-                foreach (var answer in posC)
-                    Console.Write($"{answer.color +1} ");
-                Console.WriteLine();
+                //foreach (var answer in posC)
+                //    Console.Write($"{answer.color +1} ");
+                //Console.WriteLine();
                 //
                 int i = 0;
                 if (guesses.Count() == 4)
